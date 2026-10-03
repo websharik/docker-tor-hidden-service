@@ -4,6 +4,10 @@
 
 ## Changelog
 
+* 03 oct 2026
+    * Update `tor` to `0.4.9.13`
+    * Fix build etc
+    
 * 26 jul 2022
   * Update `onions` tool to v0.7.1:
     * Fix an issue when restarting a container with control port enabled
@@ -17,6 +21,20 @@
   * Update `tor` to `0.4.6.9`
 
 ## Setup
+
+### Build locally
+
+The default build uses Tor 0.4.9.13, recorded in `current_tor_version`.
+Build and check the installed version:
+
+```sh
+docker build -t tor-hidden-service:local .
+docker run --rm --entrypoint tor tor-hidden-service:local --version
+```
+
+Use `--build-arg tor_version=VERSION` to override the version, or run
+`make update_tor_version` to update the recorded stable versions before rebuilding.
+Set your Compose service's `image` to `tor-hidden-service:local` to use this build.
 
 ### Setup hosts
 
